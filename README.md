@@ -1,6 +1,7 @@
 # React.js based front-end for retail website
 
 Front-end for a retail website using React.js , Redux and Material UI Framework
+Uses firebase db for dummy products
 
 # Instructions
 
