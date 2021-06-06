@@ -54,8 +54,11 @@ class NavDrawer extends Component {
                     <ListItem button component={NavLink} to={'/login'}>
                         <ListItemText>Login</ListItemText>
                     </ListItem>
-                    <ListItem button component={NavLink} to={'/login'}>
-                        <ListItemText>About</ListItemText>
+                    <ListItem button component={NavLink} to={'/register'}>
+                        <ListItemText>Register</ListItemText>
+                    </ListItem>
+                    <ListItem button component={NavLink} to={'/'}>
+                        <ListItemText>Marketplace</ListItemText>
                     </ListItem>
             
                 </List>
