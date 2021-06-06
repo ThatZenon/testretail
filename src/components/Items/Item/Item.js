@@ -70,7 +70,7 @@ const Item = (props) => {
                         </Grid>
                         <Grid item xs={12}>
                             <Button size="medium" color="primary" variant="contained" className={classes.dbox} 
-                            onClick={()=>props.buy(props.itm.name,props.itm.price)}>
+                            onClick={()=>props.buy(props.itm)}>
                                 BUY
                             </Button>
                         </Grid>
