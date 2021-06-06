@@ -50,14 +50,11 @@ const Header = (props) => {
         setMenu(show)
     }
     let logbutton;
-    if (window.location.pathname==="/login") {
-        logbutton = (<Button component={NavLink} to={'/'} color="inherit" >Marketplace</Button>)
+    if (props.loginState) {
+        logbutton = (<Button component={NavLink} to={'/'} onClick={props.toggleLogin} color="inherit" >LOGOUT</Button>)
     }
-    else if(window.location.pathname==="/" && !props.loginState){
+    else {
         logbutton = (<Button component={NavLink} to={'/login'} color="inherit">Login</Button>);
-    }
-    else{
-        logbutton = (<Button component={NavLink} to={'/'} color="inherit" onClick={props.loginToggle(false)}>Login</Button>);
     }
     
     return (
@@ -100,7 +97,8 @@ const mapDispatchToProps = dispatch =>{
     return {
         toggleDark: () => {
             dispatch ({type:"TOGGLE_DARK"})
-        }
+        },
+        toggleLogin: () => dispatch ({type:"TOGGLE_LOGIN",payload:{value:false,token:null}}),
     }
 }
 export default connect(mapStateToProps  ,mapDispatchToProps)(React.memo(Header));
