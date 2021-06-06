@@ -63,11 +63,15 @@ class Items extends Component {
         this.props.rmvItem(id)
         //this.setState({ usercart: samp })
     }
-    buyHandler = (name, price) => {
+    buyHandler = (itm) => {
         if (this.props.loginState) {
-            const qtyval = Number(document.getElementById(name + "q").value);
-            const samp = [{ name: name, price: price, qty: qtyval }];
-            this.setState({ usercart: samp, showmodal: true })
+            this.props.emptyCart();
+            
+            const qtyval = Number(document.getElementById(itm.id + "q").value);
+            itm.qty=qtyval;
+            this.props.addItem(itm);
+            // const samp = [{ name: itm.name, price: itm.price, qty: qtyval }];
+            this.setState({  showmodal: true })
         }
         else {
             this.props.enqueueSnackbar("Please Login first to buy items", { variant: 'warning' });
@@ -180,7 +184,6 @@ class Items extends Component {
                 <Grid item xs={12}>
                     <Header badgeVal={this.props.usercart.length}
                         cartclick={() => this.modalToggleHandler(true)}
-                        loginToggle={(val)=>this.props.toggleLogin(val)}
                      />
                     <Cartmodal show={this.state.showmodal}
                         close={() => this.modalToggleHandler(false)}
@@ -230,6 +233,7 @@ const mapDispatchToProps = dispatch =>{
         toggleLogin: (login) => dispatch ({type:"TOGGLE_LOGIN",payload:{value:login}}),
         addItem: (itm) => dispatch ({type:"ADD_ITEM",payload:{itm:itm}}),
         rmvItem: (id) => dispatch ({type:"RMV_ITEM",payload:{id:id}}),
+        emptyCart: () => dispatch ({type:"EMPTY_CART"}),
         editItem: (id,itm) => dispatch ({type:"EDIT_ITEM",payload:{itm:itm,id:id}})
     }
 }
